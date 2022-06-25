@@ -1,23 +1,18 @@
-import logo from './logo.svg';
+import logo from './assets/images/omega.png';
+import astronaut from './assets/images/astronaut.jpg';
+import RocketLoader from './components/RocketLoader/RocketLoader';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="section section--first">
+        <img src={logo} className="omega__logo" alt="logo" />
+      </div>
+      <div className="section section--second">
+        <img src={astronaut} className="omega__logo" alt="logo" />
+      </div>
+      <RocketLoader />
     </div>
   );
 }
