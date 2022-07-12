@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button/Button';
 
 import FirstPage from './components/FirstPage/FirstPage';
 import LaunchesPage from './components/LaunchesPage/LaunchesPage';
+import { LaunchType } from './types/LaunchType';
 import './App.css';
 
 // import RocketLoader from './components/RocketLoader/RocketLoader';
@@ -13,7 +14,7 @@ const RocketLoaderPromise = import('./components/RocketLoader/RocketLoader');
 const RocketLoader = React.lazy(() => RocketLoaderPromise);
 
 function App() {
-  const [launches, setLaunches] = useState<any[]>([]);
+  const [launches, setLaunches] = useState<LaunchType[]>([]);
 
   // useEffect(() => {
   //   (async () => {
@@ -63,7 +64,7 @@ function App() {
           />
           <Route
             path="/rocket"
-            element={<LaunchesPage launches={launches as any} />}
+            element={<LaunchesPage launches={launches} />}
           />
         </Routes>
       </BrowserRouter>
