@@ -1,0 +1,9 @@
+.lazy-img {
+    width: 100%;
+}
+
+.lazy-img__fallback {
+    position: absolute;
+    z-index: 2;
+    filter: blur(5px);
+}
