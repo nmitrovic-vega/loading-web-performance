@@ -1,18 +1,18 @@
-import logo from './assets/images/omega.png';
-import astronaut from './assets/images/astronaut.jpg';
-import RocketLoader from './components/RocketLoader/RocketLoader';
+import RocketComponent from './components/Rocket/Rocket';
+import space from './assets/images/space.jpg'
+import astronaut from './assets/images/astronaut.png';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <div className="section section--first">
-        <img src={logo} className="omega__logo" alt="logo" />
+      <div className="section">
+        <img src={space} className="img" alt="space" />
+        <img src={astronaut} className="astronaut" alt="logo" />
       </div>
-      <div className="section section--second">
-        <img src={astronaut} className="omega__logo" alt="logo" />
+      <div className="section">
+        <RocketComponent />
       </div>
-      <RocketLoader />
     </div>
   );
 }
