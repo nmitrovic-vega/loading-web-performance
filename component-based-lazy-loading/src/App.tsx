@@ -1,14 +1,9 @@
 import React, { Suspense, useRef } from 'react';
 import { useVisible } from './hooks/useVisible';
-import logo from './assets/images/omega.png';
-import astronaut from './assets/images/astronaut.jpg';
+import RocketComponent from './components/Rocket/Rocket';
+import RocketLoader from './components/RocketLoader/RocketLoader';
+import astronaut from './assets/images/astronaut.png';
 import './App.css';
-
-// import RocketLoader from './components/RocketLoader/RocketLoader';
-// lazy loaded component
-const RocketLoader = React.lazy(
-  () => import('./components/RocketLoader/RocketLoader')
-);
 
 function App() {
   const sectionTwoRef = useRef<HTMLDivElement>(null);
@@ -17,11 +12,11 @@ function App() {
 
   return (
     <>
-      <div className="section section--first">
-        <img src={logo} className="omega__logo" alt="logo" />
+      <div className="section section-first">
+        <img src={astronaut} className="astronaut" alt="astronaut" />
       </div>
-      <div ref={sectionTwoRef} className="section section--second">
-        <img src={astronaut} className="omega__logo" alt="logo" />
+      <div ref={sectionTwoRef} className="section section-second">
+        <RocketComponent />
       </div>
       {/* when second section is visible on the screen, we will start lazy loading of rocket loader component */}
       {isVisible && (
