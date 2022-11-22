@@ -8,11 +8,13 @@ const FirstPage = () => {
   return (
     <div className="section section-first">
       <img src={astronaut} className="astronaut" alt="logo" />
-      <Button variant="contained" color="secondary" className="link">
-        <Link to="rocket" style={{ color: 'white', textDecoration: 'none' }}>
-          Go to Rocket Loader
-        </Link>
-      </Button>
+      <div className="link-wrapper">
+        <Button variant="contained" color="secondary">
+          <Link to="rocket" style={{ color: 'white', textDecoration: 'none' }}>
+            Go to Rocket Page
+          </Link>
+        </Button>
+      </div>
     </div>
   );
 };
