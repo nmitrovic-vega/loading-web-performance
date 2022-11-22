@@ -1,0 +1,9 @@
+.section-first {
+    background-image: url('../../assets/images/space-background.jpg');
+    background-size: cover;
+    height: 100vh;
+}
+
+.link {
+    margin-bottom: 30px !important;
+}
