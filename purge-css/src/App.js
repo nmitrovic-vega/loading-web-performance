@@ -1,5 +1,5 @@
 import RocketComponent from './components/Rocket/Rocket';
-import space from './assets/images/space.jpg'
+import space from './assets/images/space-background.jpg'
 import astronaut from './assets/images/astronaut.png';
 import './App.css';
 
