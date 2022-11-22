@@ -5,8 +5,8 @@ import FirstPage from './components/FirstPage/FirstPage';
 import { theme } from './theme/theme';
 import './App.css';
 
-import RocketComponent from './components/Rocket/Rocket';
-// const RocketComponent = React.lazy(() => import('./components/Rocket/Rocket'));
+// import RocketComponent from './components/Rocket/Rocket';
+const RocketComponent = React.lazy(() => import('./components/Rocket/Rocket'));
 
 function App() {
   return (
