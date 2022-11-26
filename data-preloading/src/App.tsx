@@ -1,75 +1,62 @@
-import React, { useEffect, Suspense, useState } from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import { mutate } from 'swr';
-import Button from '@material-ui/core/Button/Button';
-
-import FirstPage from './components/FirstPage/FirstPage';
-import LaunchesPage from './components/LaunchesPage/LaunchesPage';
-import { LaunchType } from './types/LaunchType';
-import './App.css';
-
-// import RocketLoader from './components/RocketLoader/RocketLoader';
-
-const RocketLoaderPromise = import('./components/RocketLoader/RocketLoader');
-const RocketLoader = React.lazy(() => RocketLoaderPromise);
+import React, { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ThemeProvider, Typography } from "@material-ui/core";
+import { theme } from "./theme/theme";
+import PlanetList from "./components/PlanetList";
+import { Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import { mutate, SWRConfig } from "swr";
+import astronaut from "./assets/images/astronaut.png";
+import "./App.css";
 
 function App() {
-  const [launches, setLaunches] = useState<LaunchType[]>([]);
+	const handlePrefetch = async () => {
+		const flights = await mutate(
+			"planets",
+			fetch(
+				"https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+*+from+pscomppars+where+disc_facility+like+%27%25TESS%25%27+order+by+pl_orbper+desc&format=json"
+			).then((res) => res.json())
+		);
+	};
 
-  // useEffect(() => {
-  //   (async () => {
-  //     const launches = await mutate(
-  //       'https://api.spacex.land/rest/launches?limit=10',
-  //       fetch('https://api.spacex.land/rest/launches?limit=10').then((res) =>
-  //         res.json()
-  //       )
-  //     );
-  //     setLaunches(launches);
-  //   })();
-  // }, []);
-
-  const handlePrefetch = async () => {
-    const launches = await mutate(
-      'https://api.spacex.land/rest/launches?limit=10',
-      fetch('https://api.spacex.land/rest/launches?limit=10').then((res) =>
-        res.json()
-      )
-    );
-    setLaunches(launches);
-  };
-
-  return (
-    <Suspense fallback={<RocketLoader />}>
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <FirstPage>
-                <Link
-                  to="rocket"
-                  onMouseOver={handlePrefetch}
-                  style={{
-                    display: 'block',
-                    margin: '50px auto',
-                    textAlign: 'center',
-                  }}
-                >
-                  <Button variant="contained" style={{ margin: 'auto' }}>
-                    Go to Rocket List Page
-                  </Button>
-                </Link>
-              </FirstPage>
-            }
-          />
-          <Route
-            path="/rocket"
-            element={<LaunchesPage launches={launches} />}
-          />
-        </Routes>
-      </BrowserRouter>
-    </Suspense>
-  );
+	return (
+		<ThemeProvider theme={theme}>
+			<BrowserRouter>
+				<Routes>
+					<Route
+						path="/"
+						element={
+							<div className="section section-first">
+								<Typography variant="h1" style={{ color: "white", marginTop: "150px" }}>
+									Svemirko.rs
+								</Typography>
+								<Link
+									to="rocket"
+									onMouseEnter={handlePrefetch}
+									style={{
+										display: "block",
+										margin: "50px auto",
+										textAlign: "center",
+										textDecoration: "none",
+									}}
+								>
+									<Button
+										variant="contained"
+										color="secondary"
+										style={{ margin: "auto", color: "white", textDecoration: "none" }}
+									>
+										Go to Flights Page
+									</Button>
+								</Link>
+								<img src={astronaut} className="astronaut" alt="astronaut" />
+							</div>
+						}
+					/>
+					<Route path="/rocket" element={<PlanetList />} />
+				</Routes>
+			</BrowserRouter>
+		</ThemeProvider>
+	);
 }
 
 export default App;

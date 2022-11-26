@@ -1,0 +1,13 @@
+.rocket {
+    transform: rotate(-90deg) translateX(100px);
+    width: 70%;
+}
+
+.rocket-trail {
+    position: absolute;
+    transform: rotate(-90deg);
+    width: 20%;
+    top: 120px;
+    left: 105px;
+    z-index: -1;
+}

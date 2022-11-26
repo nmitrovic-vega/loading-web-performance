@@ -16,12 +16,13 @@ function App() {
       <div className="section section--second">
         <RocketLoader />
       </div>
-      <LazyImg
+      <img src={galaxy} />
+      {/* <LazyImg
         src={galaxy}
         fallback={galaxyLight}
         className="omega__logo"
         alt="logo"
-      />
+      /> */}
     </div>
   );
 }
